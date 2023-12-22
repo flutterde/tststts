@@ -8,6 +8,13 @@
 // delete node
 // get last node
 // clear list
+
+void delete(void *lst)
+{
+    free(lst);
+}
+
+
 int main(void)
 {
     t_list *head;
@@ -50,16 +57,32 @@ for(int k = 0 ; k < 50; k++)
     {
 
         nnnode = ft_lstnew(strs[r]);
+        printf ("(%d) : node address : %p\n",r, nnnode);
         ft_lstadd_back(&head, nnnode);
         r++;
     }
     
     // i = 0;
-    
+    t_list *ntmp = head;
+        while (ntmp)
+    {
+
+        printf("(%.2d) : the result : %s   |  next : %p \n",i, (char *)ntmp->content, ntmp->next);
+        ntmp = ntmp->next;
+        i++;
+    }
+
+    t_list *tlast = ft_lstlast(head);
+    printf("-------------- <> ------------------------\n");
+    printf("pointer : %p\n", tlast);
+    ft_lstdelone(tlast, delete);
+
+     printf("-------------- <::> ------------------------\n");
+    i = 0;
         while (head)
     {
 
-        printf("(%.2d) : the result : %s\n",i, (char *)head->content);
+        printf("(%.2d) : the result : %s   |  next : %p\n ",i, (char *)head->content, head->next);
         head = head->next;
         i++;
     }
